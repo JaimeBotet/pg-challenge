@@ -1,0 +1,17 @@
+{
+    "name": "jaimeb/core-team-test",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Jaimeb\\CoreTeamTest\\": "src/",
+            "Auction\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "jabotet",
+            "email": "jaime.90.botet@gmail.com"
+        }
+    ],
+    "require": {}
+}
