@@ -7,7 +7,7 @@ class Bid {
 	private $amount;
 
 	public function __construct($bidder, $amount) {
-		$this->bider = $bidder;
+		$this->bidder = $bidder;
 		$this->amount = $amount;
 	}
 

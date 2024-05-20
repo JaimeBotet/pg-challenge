@@ -1,1 +1,4 @@
 /vendor/
+
+.vscode/
+!.vscode/launch.json

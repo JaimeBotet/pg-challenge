@@ -2,7 +2,7 @@
 
 namespace Auction;
 
-use Bid;
+use Auction\Bid;
 
 class Auction {
 	private $reservePrice;
@@ -20,7 +20,10 @@ class Auction {
 	}
 
 	public function getWinner() {
-		if(empty($this->bids)) return null;
+		if(empty($this->bids)) return [
+			'winner'		=> 'None',
+			'winningPrice'	=> $this->reservePrice
+		];
 
 		usort($this->bids, function($a, $b) {
 			return $b->getAmount() <=> $a->getAmount();
@@ -28,17 +31,15 @@ class Auction {
 
 		$winningBid = $this->bids[0];
 		$winningBidder = $winningBid->getBidder();
-
+		$losingBids = array_values(array_filter($this->bids, function($bid) use($winningBidder) {
+			return $bid->getBidder() !== $winningBidder;
+		}));
+		
 		$winningPrice = $this->reservePrice;
-
-		$losingBidders = array_filter($this->bids, function($bid) {
-			$bid->getBidder() !== $winningBidder;
-		});
-
-		if($losingBidders[0]->getAmount() > $winningPrice) $winningPrice = $losingBidders[0]->getAmount();
+		if(!empty($losingBids) && $losingBids[0]->getAmount() > $winningPrice) $winningPrice = $losingBids[0]->getAmount();
 
 		return [
-			'winner' => $winningBidder,
+			'winner'		=> $winningBidder,
 			'winningPrice'	=> $winningPrice
 		];
 	}

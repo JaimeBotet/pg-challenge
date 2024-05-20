@@ -1,6 +1,5 @@
 <?php
 
-// require '../vendor/autoload.php';
 require __DIR__ . '/../vendor/autoload.php';
 
 use Auction\Auction;
@@ -22,7 +21,6 @@ class AuctionTest {
 		assert($result['winningPrice'] === $expected['amount'], 'Winning price should be ' . $expected['amount']);
 	}
 }
-
 
 $tests = [
 	[
@@ -52,7 +50,7 @@ $tests = [
 			['bidder' => 'A', 'amount' => 90], ['bidder' => 'B', 'amount' => 90], ['bidder' => 'C', 'amount' => 95], ['bidder' => 'D', 'amount' => 85], ['bidder' => 'E', 'amount' => 80]
 		],
 		'expected' => [
-			'bidder' => 'C',
+			'bidder' => 'None',
 			'amount' => 100
 		]
 	]
